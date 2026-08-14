@@ -1,0 +1,23 @@
+# Project TODO
+
+- [x] Définir le modèle de données des alertes, incidents, actifs, actions et rapports.
+- [x] Mettre en place les rôles distincts `analyst` et `admin` avec des contrôles côté serveur.
+- [x] Ajouter un espace administrateur protégé exposant le journal d’audit et les responsabilités du rôle.
+- [x] Concevoir le tableau de bord SOC avec les indicateurs de sécurité clés.
+- [x] Créer l’espace de gestion des alertes avec filtres, détails et statuts.
+- [x] Créer l’espace de suivi des incidents avec assignation, historique et transitions strictes du cycle de vie.
+- [x] Créer l’inventaire des actifs surveillés et leurs scores de risque.
+- [x] Créer l’espace d’analyse des risques avec visualisations des tendances et catégories de menaces.
+- [x] Compléter les parcours incidents avec création, auto-assignation, commentaires et consultation de l’historique.
+- [x] Ajouter l’accès aux détails complets de chaque alerte depuis le centre d’alertes.
+- [x] Mettre en place la génération et l’export d’un rapport de posture de sécurité.
+- [x] Intégrer un assistant IA pour analyser les alertes, les incidents et les demandes en langage naturel.
+- [x] Déclencher une notification au propriétaire lors de la création d’une alerte critique ou d’un incident de haute sévérité.
+- [x] Ajouter des données opérationnelles de démonstration clairement identifiées pour valider les parcours SOC.
+- [x] Ajouter et exécuter des tests unitaires couvrant les règles métier sensibles.
+- [x] Vérifier l’interface sur ordinateur et mobile, puis corriger les défauts identifiés.
+- [x] Améliorer le centre d’alertes sur mobile en remplaçant le tableau horizontal par des cartes lisibles sans défilement latéral.
+- [x] Créer un point de sauvegarde du projet une fois la première version prête.
+- [x] Ajouter des tests unitaires des mutations critiques de création d’alertes et d’incidents, incluant le déclenchement des notifications au propriétaire.
+- [x] Ajouter des tests unitaires de génération de rapport et de la chronologie d’incident (assignation et commentaire).
+- [x] Documenter les exigences, l’architecture, les données, l’API, l’IA, la sécurité et la feuille de route.

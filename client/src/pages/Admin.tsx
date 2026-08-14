@@ -1,0 +1,19 @@
+import { useAuth } from "@/_core/hooks/useAuth";
+import DashboardLayout from "@/components/DashboardLayout";
+import { SocPageHeader } from "@/components/SocPageHeader";
+import { trpc } from "@/lib/trpc";
+import { LockKeyhole, ScrollText, ShieldCheck } from "lucide-react";
+
+function AdminContent() {
+  const { user } = useAuth();
+  const auditQuery = trpc.soc.admin.auditLogs.useQuery(undefined, { enabled: user?.role === "admin" });
+  if (user?.role !== "admin") {
+    return <div className="soc-panel mx-auto mt-16 max-w-xl border-amber-300/15 bg-slate-950/50 p-8 text-center"><div className="mx-auto grid h-12 w-12 place-items-center rounded-xl border border-amber-300/15 bg-amber-300/5"><LockKeyhole className="h-5 w-5 text-amber-200" /></div><h1 className="mt-5 text-xl font-semibold text-slate-100">Accès administrateur requis</h1><p className="mt-3 text-sm leading-6 text-slate-400">Votre rôle Analyste donne accès aux opérations SOC. Le journal d’audit et les fonctions d’administration sont réservés aux administrateurs.</p></div>;
+  }
+  return <div className="space-y-7"><SocPageHeader eyebrow="Administration" title="Journal d’audit" description="Traçabilité des opérations sensibles réalisées au sein de la plateforme. Ces données sont accessibles uniquement aux administrateurs." />
+    <section className="grid gap-4 md:grid-cols-3"><AdminFeature icon={ShieldCheck} title="Accès complet" text="Supervision des actions et paramétrage sensible." /><AdminFeature icon={ScrollText} title="Traçabilité" text="Créations, transitions, notifications, exports et requêtes IA." /><AdminFeature icon={LockKeyhole} title="Contrôle serveur" text="Le rôle est validé par les procédures back-end avant la lecture." /></section>
+    <section className="soc-panel overflow-hidden"><div className="overflow-x-auto"><table className="w-full min-w-[860px] text-left"><thead className="border-b border-slate-800 bg-slate-950/40 text-[11px] uppercase tracking-[0.18em] text-slate-500"><tr><th className="px-5 py-4">Horodatage</th><th className="px-5 py-4">Action</th><th className="px-5 py-4">Ressource</th><th className="px-5 py-4">Identifiant</th><th className="px-5 py-4">Résultat</th></tr></thead><tbody className="divide-y divide-slate-800/80">{auditQuery.isLoading ? <tr><td className="px-5 py-10 text-sm text-slate-500" colSpan={5}>Chargement du journal d’audit…</td></tr> : null}{auditQuery.isError ? <tr><td className="px-5 py-10 text-sm text-rose-300" colSpan={5}>Impossible de charger le journal : {auditQuery.error.message}</td></tr> : null}{auditQuery.data?.length === 0 ? <tr><td className="px-5 py-14 text-center text-sm text-slate-500" colSpan={5}>Aucune action sensible n’a encore été enregistrée.</td></tr> : null}{auditQuery.data?.map(log => <tr className="hover:bg-slate-900/40" key={log.id}><td className="px-5 py-4 font-mono text-xs text-slate-400">{new Date(log.createdAt).toLocaleString("fr-FR")}</td><td className="px-5 py-4 text-sm font-medium text-slate-200">{log.action}</td><td className="px-5 py-4 text-sm text-slate-300">{log.resourceType}</td><td className="px-5 py-4 font-mono text-xs text-slate-400">{log.resourceId ?? "—"}</td><td className="px-5 py-4"><span className="inline-flex rounded-full border border-emerald-400/15 bg-emerald-400/5 px-2.5 py-1 text-xs font-medium text-emerald-200">Réussi</span></td></tr>)}</tbody></table></div></section></div>;
+}
+
+function AdminFeature({ icon: Icon, title, text }: { icon: typeof ShieldCheck; title: string; text: string }) { return <div className="soc-panel border-slate-800 bg-slate-950/35 p-5"><Icon className="h-5 w-5 text-cyan-300" /><h2 className="mt-4 font-semibold text-slate-100">{title}</h2><p className="mt-2 text-sm leading-6 text-slate-400">{text}</p></div>; }
+export default function Admin() { return <DashboardLayout><AdminContent /></DashboardLayout>; }
