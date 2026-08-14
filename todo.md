@@ -49,3 +49,4 @@
 - [x] Réduire l’exposition des en-têtes d’autorisation dans les journaux de diagnostic du navigateur en environnement de développement.
 - [x] Analyser les exigences de sécurité du contenu complémentaire fourni et les comparer aux contrôles AI-NETSEC.
 - [ ] Vérifier la connexion GitHub, confirmer le dépôt cible et exporter AI-NETSEC de manière contrôlée.
+- [x] Copier une version locale vérifiée d’AI-NETSEC dans C:\\Users\\utilisateur\\Desktop\\AI-security.
