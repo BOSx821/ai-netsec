@@ -42,3 +42,8 @@
 - [x] Valider le rapport détaillé dans l’application et créer un checkpoint de livraison.
 - [x] Corriger le compteur d’incidents actifs et masquer la copie de rapport réservée à l’impression sur l’écran.
 - [x] Documenter les exigences, l’architecture, les données, l’API, l’IA, la sécurité et la feuille de route.
+- [x] Définir une matrice complémentaire de tests fonctionnels et de sécurité dans le périmètre autorisé.
+- [x] Vérifier les validations d’entrée, les erreurs contrôlées et les protections de procédure côté serveur.
+- [x] Tester les exports, la journalisation et les actions restantes dans la session administrateur active.
+- [x] Documenter les résultats de recette sécurité, corriger les écarts et créer un checkpoint de validation.
+- [x] Réduire l’exposition des en-têtes d’autorisation dans les journaux de diagnostic du navigateur en environnement de développement.

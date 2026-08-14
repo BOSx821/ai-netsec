@@ -45,6 +45,14 @@ function analystContext(): TrpcContext {
   };
 }
 
+function anonymousContext(): TrpcContext {
+  return {
+    user: null,
+    req: { protocol: "https", headers: {} } as TrpcContext["req"],
+    res: {} as TrpcContext["res"],
+  };
+}
+
 describe("mutations SOC sensibles", () => {
   beforeEach(() => {
     vi.clearAllMocks();
@@ -88,5 +96,25 @@ describe("mutations SOC sensibles", () => {
     expect(mocks.addIncidentComment).toHaveBeenCalledWith({ incidentId: 22, actorUserId: 8, comment: "Vérification engagée" });
     expect(mocks.createReport).toHaveBeenCalledTimes(1);
     expect(report).toMatchObject({ id: 5, reportType: "posture" });
+  });
+
+  it("refuse les procédures SOC sans session authentifiée", async () => {
+    const caller = socRouter.createCaller(anonymousContext());
+    await expect(caller.alerts.list()).rejects.toMatchObject({ code: "UNAUTHORIZED" });
+    expect(mocks.listAlerts).not.toHaveBeenCalled();
+  });
+
+  it("rejette les entrées hors contrat avant toute mutation", async () => {
+    const caller = socRouter.createCaller(analystContext());
+    await expect(caller.alerts.create({ title: "x", description: "court", category: "Réseau", severity: "invalid" as never, riskScore: 101, detectionMethod: "manual", confidence: -1 })).rejects.toMatchObject({ code: "BAD_REQUEST" });
+    await expect(caller.incidents.addComment({ incidentId: 22, comment: "" })).rejects.toMatchObject({ code: "BAD_REQUEST" });
+    expect(mocks.createAlert).not.toHaveBeenCalled();
+    expect(mocks.addIncidentComment).not.toHaveBeenCalled();
+  });
+
+  it("renvoie une erreur contrôlée pour un incident inexistant", async () => {
+    mocks.getIncidentById.mockResolvedValueOnce(undefined);
+    const caller = socRouter.createCaller(analystContext());
+    await expect(caller.incidents.transition({ id: 9999, nextStatus: "in_progress" })).rejects.toThrow("Incident introuvable");
   });
 });
