@@ -7,6 +7,16 @@ function toJson(value: unknown) {
   return JSON.stringify(value, null, 2);
 }
 
+function extractAssistantText(content: string | Array<{ type: string; text?: string }>): string {
+  if (typeof content === "string") return content.trim();
+  return content
+    .filter(part => part.type === "text" && typeof part.text === "string")
+    .map(part => part.text!.trim())
+    .filter(Boolean)
+    .join("\n")
+    .trim();
+}
+
 export const assistantRouter = router({
   ask: protectedProcedure
     .input(z.object({ question: z.string().min(2).max(1600), alertId: z.number().int().positive().optional(), incidentId: z.number().int().positive().optional() }))
@@ -18,7 +28,7 @@ export const assistantRouter = router({
       ]);
       const incidentHistory = input.incidentId ? await db.listIncidentActions(input.incidentId) : [];
       const { data: models } = await listLLMModels();
-      const model = models.find(modelInfo => modelInfo.id === "gpt-5-mini")?.id ?? models.find(modelInfo => modelInfo.id.startsWith("claude-haiku"))?.id ?? models[0]?.id;
+      const model = models.find(modelInfo => modelInfo.id.startsWith("claude-haiku"))?.id ?? models.find(modelInfo => modelInfo.id === "gpt-5-mini")?.id ?? models[0]?.id;
       if (!model) throw new Error("Aucun modèle IA n’est disponible pour l’assistant.");
 
       const response = await invokeLLM({
@@ -33,11 +43,13 @@ export const assistantRouter = router({
             content: `Question de l’analyste : ${input.question}\n\nContexte SOC agrégé :\n${toJson(summary)}\n\nAlerte éventuellement sélectionnée :\n${toJson(alertContext ?? "Aucune")}\n\nIncident éventuellement sélectionné :\n${toJson(incidentContext ?? "Aucun")}\n\nHistorique d’incident éventuellement sélectionné :\n${toJson(incidentHistory)}`,
           },
         ],
-        maxTokens: 900,
+        ...(model.startsWith("gpt-5") ? { reasoning: { effort: "minimal" } } : { maxTokens: 900 }),
       });
       const answer = response.choices[0]?.message.content;
-      if (!answer || typeof answer !== "string") throw new Error("L’assistant n’a pas produit de réponse exploitable.");
+      if (!answer) throw new Error("L’assistant n’a pas produit de réponse exploitable.");
+      const answerText = extractAssistantText(answer);
+      if (!answerText) throw new Error("L’assistant n’a pas produit de réponse exploitable.");
       await db.writeAuditLog({ actorUserId: ctx.user.id, action: "assistant.ask", resourceType: "assistant", metadata: { model, alertId: input.alertId, incidentId: input.incidentId } });
-      return { answer, model };
+      return { answer: answerText, model };
     }),
 });

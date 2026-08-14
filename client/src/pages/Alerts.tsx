@@ -22,6 +22,7 @@ function AlertsContent() {
     onSuccess: () => {
       toast.success("Statut de l’alerte mis à jour.");
       void utils.soc.alerts.list.invalidate();
+      if (selectedAlertId !== null) void utils.soc.alerts.get.invalidate({ id: selectedAlertId });
       void utils.soc.dashboard.invalidate();
     },
     onError: error => toast.error(error.message),

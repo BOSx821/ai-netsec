@@ -20,4 +20,25 @@
 - [x] Créer un point de sauvegarde du projet une fois la première version prête.
 - [x] Ajouter des tests unitaires des mutations critiques de création d’alertes et d’incidents, incluant le déclenchement des notifications au propriétaire.
 - [x] Ajouter des tests unitaires de génération de rapport et de la chronologie d’incident (assignation et commentaire).
+- [x] Définir et documenter le périmètre de validation en conditions réelles autorisées.
+- [x] Vérifier les parcours authentifiés, les rôles Analyste et Administrateur, ainsi que les accès sensibles.
+- [x] Exécuter les parcours opérationnels alertes, incidents, rapports et assistant IA avec des données explicitement identifiées.
+- [x] Tester le déclenchement réel des notifications critiques au propriétaire dans l’environnement actif.
+- [x] Consigner les résultats de la campagne de tests réels, corriger les écarts et créer un point de sauvegarde de validation.
+- [x] Tester l’ensemble des pages et fonctionnalités accessibles avec un compte administrateur en session réelle.
+- [x] Tester chaque action utilisateur disponible, y compris les états vides, les erreurs et les contrôles d’autorisation.
+- [x] Corriger la synchronisation du panneau de détail d’alerte après une mise à jour de statut.
+- [x] Diagnostiquer et corriger l’échec de réponse de l’assistant IA observé en session réelle.
+- [x] Rendre les réponses Markdown de l’assistant IA lisibles dans l’interface de conversation.
+- [x] Vérifier explicitement le tableau de bord principal et l’action d’impression/PDF du rapport.
+- [x] Rejouer une mutation d’alerte avec le panneau de détail ouvert et confirmer visuellement sa resynchronisation.
+- [x] Documenter la limite de recette concernant l’absence de seconde session OAuth Analyste distincte.
+- [x] Créer un checkpoint post-recette incluant les correctifs IA et les résultats de validation.
+- [x] Définir et documenter la grille A4, les marges, la pagination et les règles de rendu professionnel du rapport PDF.
+- [x] Appliquer une mise en forme A4 professionnelle au rapport imprimable, avec en-tête, pied de page, tableaux et sauts de page maîtrisés.
+- [x] Vérifier le rendu A4/PDF du rapport détaillé et créer un checkpoint de livraison.
+- [x] Définir la structure détaillée du rapport de posture imprimable et de son export JSON enrichi.
+- [x] Créer une vue dédiée à l’impression ou au PDF avec synthèse, incidents, alertes, actifs, tendances et recommandations.
+- [x] Valider le rapport détaillé dans l’application et créer un checkpoint de livraison.
+- [x] Corriger le compteur d’incidents actifs et masquer la copie de rapport réservée à l’impression sur l’écran.
 - [x] Documenter les exigences, l’architecture, les données, l’API, l’IA, la sécurité et la feuille de route.

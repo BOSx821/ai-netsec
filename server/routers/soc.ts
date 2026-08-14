@@ -144,13 +144,34 @@ export const socRouter = router({
     list: protectedProcedure.query(() => db.listReports()),
     generatePosture: protectedProcedure.mutation(async ({ ctx }) => {
       const [summary, assetsList, alertsList, incidentsList] = await Promise.all([db.getSocSummary(), db.listAssets(), db.listAlerts(), db.listIncidents()]);
+      const priorityAlerts = alertsList.filter(({ alert }) => alert.status !== "resolved").sort((a, b) => b.alert.riskScore - a.alert.riskScore).slice(0, 20);
+      const activeIncidents = incidentsList.filter(({ incident }) => incident.status !== "closed").sort((a, b) => b.incident.riskScore - a.incident.riskScore).slice(0, 20);
+      const highRiskAssets = assetsList.filter(asset => asset.riskLevel === "critical" || asset.riskLevel === "high").sort((a, b) => b.riskScore - a.riskScore);
+      const recommendations: string[] = [];
+      if (summary.metrics.criticalAlerts > 0) recommendations.push("Qualifier et contenir en priorité les alertes critiques encore ouvertes; préserver les éléments de preuve avant toute remédiation.");
+      if (activeIncidents.length > 0) recommendations.push("Affecter un responsable à chaque incident actif, documenter les décisions et respecter la séquence de cycle de vie contrôlée.");
+      if (highRiskAssets.length > 0) recommendations.push("Vérifier les contrôles d’accès, les correctifs et la supervision des actifs de risque élevé ou critique.");
+      if (summary.metrics.onlineSystems < summary.metrics.monitoredSystems) recommendations.push("Réduire les zones sans visibilité en rétablissant la supervision des systèmes indisponibles ou dégradés.");
+      if (recommendations.length === 0) recommendations.push("Maintenir la revue régulière des alertes, de l’inventaire et des journaux d’audit afin de préserver la posture de sécurité.");
       const content = {
         generatedAt: new Date().toISOString(),
-        summary,
-        highRiskAssets: assetsList.filter(asset => asset.riskLevel === "critical" || asset.riskLevel === "high"),
-        activeAlerts: alertsList.filter(({ alert }) => alert.status !== "resolved").slice(0, 20),
-        activeIncidents: incidentsList.filter(({ incident }) => incident.status !== "closed").slice(0, 20),
-        recommendation: "Traiter prioritairement les alertes critiques, confirmer les propriétaires des actifs à risque élevé et documenter chaque décision de réponse dans l’historique d’incident.",
+        generatedBy: ctx.user.name ?? "Utilisateur SOC",
+        scope: summary.isDemoData ? "Les données avec le préfixe [Démo] ou [Recette] sont fictives et servent à la validation de la plateforme." : "Le rapport couvre les données disponibles dans AI-NETSEC au moment de sa génération.",
+        executiveSummary: {
+          globalRiskScore: summary.metrics.globalRiskScore,
+          activeAlerts: summary.metrics.activeAlerts,
+          criticalAlerts: summary.metrics.criticalAlerts,
+          activeIncidents: summary.metrics.openIncidents,
+          monitoredSystems: summary.metrics.monitoredSystems,
+          onlineSystems: summary.metrics.onlineSystems,
+        },
+        riskTrend: summary.riskTrend,
+        alertSummary: summary.alertsBySeverity,
+        priorityAlerts: priorityAlerts.map(({ alert, assetName }) => ({ id: alert.id, title: alert.title, severity: alert.severity, status: alert.status, riskScore: alert.riskScore, category: alert.category, assetName, confidence: alert.confidence })),
+        activeIncidents: activeIncidents.map(({ incident, assetName, assigneeName }) => ({ id: incident.id, title: incident.title, severity: incident.severity, status: incident.status, riskScore: incident.riskScore, assetName, assigneeName })),
+        highRiskAssets,
+        recommendations,
+        limitations: ["Ce rapport n’atteste pas d’une compromission et ne remplace pas la qualification humaine d’un analyste.", "Aucune capture réseau, aucun scan actif et aucune ingestion de logs externe ne sont réalisés par cette version.", "Les données et tendances reflètent exclusivement les objets disponibles dans la plateforme au moment de la génération."],
       };
       const report = await db.createReport({ reportType: "posture", title: `Posture de sécurité — ${new Date().toLocaleDateString("fr-FR")}`, generatedByUserId: ctx.user.id, content });
       await db.writeAuditLog({ actorUserId: ctx.user.id, action: "report.generate.posture", resourceType: "report", resourceId: String(report.id) });

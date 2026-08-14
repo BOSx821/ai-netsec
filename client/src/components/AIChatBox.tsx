@@ -58,6 +58,28 @@ export type AIChatBoxProps = {
   suggestedPrompts?: string[];
 };
 
+function cleanInlineMarkdown(value: string) {
+  return value.replace(/\*\*(.*?)\*\*/g, "$1").replace(/`([^`]+)`/g, "$1");
+}
+
+function AssistantMarkdown({ content }: { content: string }) {
+  const blocks = content.split(/\n{2,}/).filter(Boolean);
+  return <div className="space-y-3 text-sm leading-6">{blocks.map((block, index) => {
+    const lines = block.split("\n");
+    const first = lines[0] ?? "";
+    if (/^#{1,3}\s/.test(first)) {
+      const level = first.match(/^#+/)?.[0].length ?? 1;
+      const title = cleanInlineMarkdown(first.replace(/^#{1,3}\s*/, ""));
+      return <p className={cn(level === 1 ? "text-base font-semibold text-slate-100" : "font-semibold text-slate-200")} key={index}>{title}</p>;
+    }
+    if (first.trim() === "---") return <hr className="border-slate-700" key={index} />;
+    if (lines.every(line => /^\s*(?:[-*]|\d+\.)\s+/.test(line))) {
+      return <ul className="list-disc space-y-1 pl-5 text-slate-200" key={index}>{lines.map((line, lineIndex) => <li key={lineIndex}>{cleanInlineMarkdown(line.replace(/^\s*(?:[-*]|\d+\.)\s+/, ""))}</li>)}</ul>;
+    }
+    return <p className="whitespace-pre-wrap text-slate-200" key={index}>{cleanInlineMarkdown(block)}</p>;
+  })}</div>;
+}
+
 /**
  * A ready-to-use AI chat box component that integrates with the LLM system.
  *
@@ -259,9 +281,7 @@ export function AIChatBox({
                           : "bg-muted text-foreground"
                       )}
                     >
-                      <p className="whitespace-pre-wrap text-sm leading-6">
-                        {message.content}
-                      </p>
+                      {message.role === "assistant" ? <AssistantMarkdown content={message.content} /> : <p className="whitespace-pre-wrap text-sm leading-6">{message.content}</p>}
                     </div>
 
                     {message.role === "user" && (
