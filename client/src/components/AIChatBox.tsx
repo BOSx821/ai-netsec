@@ -212,19 +212,23 @@ export function AIChatBox({
     <div
       ref={containerRef}
       className={cn(
-        "flex flex-col bg-card text-card-foreground rounded-lg border shadow-sm",
+        "soc-ai-chat flex flex-col bg-card text-card-foreground rounded-lg border shadow-sm",
         className
       )}
       style={{ height }}
     >
+      <div className="soc-ai-chat-header">
+        <div className="flex items-center gap-2.5"><span className="soc-ai-chat-mark"><Sparkles className="size-4" aria-hidden="true" /></span><div><p>AI Security Intelligence</p><span>Analyse contextuelle, sans exécution automatique</span></div></div>
+        <span className="soc-ai-chat-state"><span aria-hidden="true" />Prêt</span>
+      </div>
       {/* Messages Area */}
       <div ref={scrollAreaRef} className="flex-1 overflow-hidden">
         {displayMessages.length === 0 ? (
           <div className="flex h-full flex-col p-4">
             <div className="flex flex-1 flex-col items-center justify-center gap-6 text-muted-foreground">
-              <div className="flex flex-col items-center gap-3">
-                <Sparkles className="size-12 opacity-20" />
-                <p className="text-sm">{emptyStateMessage}</p>
+              <div className="flex flex-col items-center gap-3 text-center">
+                <span className="soc-ai-empty-mark"><Sparkles className="size-7" aria-hidden="true" /></span>
+                <div><p className="text-sm font-medium text-slate-200">{emptyStateMessage}</p><p className="mt-1 max-w-sm text-xs leading-5 text-slate-500">Les réponses structurent les signaux disponibles, les hypothèses et les vérifications à effectuer par l’analyste.</p></div>
               </div>
 
               {suggestedPrompts && suggestedPrompts.length > 0 && (
@@ -234,7 +238,7 @@ export function AIChatBox({
                       key={index}
                       onClick={() => onSendMessage(prompt)}
                       disabled={isLoading}
-                      className="rounded-lg border border-border bg-card px-4 py-2 text-sm transition-colors hover:bg-accent disabled:cursor-not-allowed disabled:opacity-50"
+                      className="soc-ai-prompt"
                     >
                       {prompt}
                     </button>
@@ -268,17 +272,17 @@ export function AIChatBox({
                     }
                   >
                     {message.role === "assistant" && (
-                      <div className="size-8 shrink-0 mt-1 rounded-full bg-primary/10 flex items-center justify-center">
+                      <div className="soc-ai-message-avatar size-8 shrink-0 mt-1 rounded-full bg-primary/10 flex items-center justify-center">
                         <Sparkles className="size-4 text-primary" />
                       </div>
                     )}
 
                     <div
                       className={cn(
-                        "max-w-[80%] rounded-lg px-4 py-2.5",
+                        "max-w-[80%] rounded-xl px-4 py-2.5",
                         message.role === "user"
-                          ? "bg-primary text-primary-foreground"
-                          : "bg-muted text-foreground"
+                          ? "soc-ai-user-message bg-primary text-primary-foreground"
+                          : "soc-ai-assistant-message bg-muted text-foreground"
                       )}
                     >
                       {message.role === "assistant" ? <AssistantMarkdown content={message.content} /> : <p className="whitespace-pre-wrap text-sm leading-6">{message.content}</p>}
@@ -302,11 +306,11 @@ export function AIChatBox({
                       : undefined
                   }
                 >
-                  <div className="size-8 shrink-0 mt-1 rounded-full bg-primary/10 flex items-center justify-center">
+                  <div className="soc-ai-message-avatar size-8 shrink-0 mt-1 rounded-full bg-primary/10 flex items-center justify-center">
                     <Sparkles className="size-4 text-primary" />
                   </div>
-                  <div className="rounded-lg bg-muted px-4 py-2.5">
-                    <Loader2 className="size-4 animate-spin text-muted-foreground" />
+                  <div className="soc-ai-assistant-message rounded-xl bg-muted px-4 py-2.5">
+                    <span className="flex items-center gap-2 text-xs text-slate-400"><Loader2 className="size-4 animate-spin text-cyan-300" />Analyse du contexte…</span>
                   </div>
                 </div>
               )}
@@ -319,7 +323,7 @@ export function AIChatBox({
       <form
         ref={inputAreaRef}
         onSubmit={handleSubmit}
-        className="flex gap-2 p-4 border-t bg-background/50 items-end"
+        className="flex gap-2 border-t border-slate-800/80 bg-slate-950/35 p-4 items-end"
       >
         <Textarea
           ref={textareaRef}

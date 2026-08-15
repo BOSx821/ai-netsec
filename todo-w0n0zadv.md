@@ -1,0 +1,18 @@
+# Project TODO
+
+- [x] Auditer les routes, composants réutilisables, données tRPC et états d’authentification existants sans modifier le backend.
+- [x] Évaluer la structure actuelle du dashboard, la navigation, les écrans SOC, l’assistant IA et les composants de table.
+- [x] Mettre en place des jetons de design dark-first cohérents pour les surfaces, la typographie, les statuts de sécurité, les bordures, les ombres et les focus visibles.
+- [x] Repenser le shell applicatif avec une navigation cybersécurité claire, accessible et adaptée aux différentes largeurs d’écran.
+- [x] Recomposer le dashboard autour de la hiérarchie sécurité : alertes critiques, niveau de menace, indicateurs, risques actifs, insights IA, santé réseau et événements récents.
+- [x] Créer ou améliorer les composants réutilisables de priorité/sévérité, KPI, statuts, alertes, insights IA et états vides, chargement et erreur.
+- [x] Améliorer les vues de monitoring, alertes, incidents, actifs, analyse, rapports, administration et assistant IA sans changer leurs routes, API, permissions ni logique métier.
+- [x] Rendre les tableaux, filtres, actions et retours d’état utilisables au clavier et informatifs sans dépendre uniquement de la couleur.
+- [x] Adapter les grilles, la navigation et la densité de données aux formats mobile, tablette, ordinateur portable et grand écran.
+- [x] Ajouter ou actualiser les tests Vitest pertinents pour les données et transformations d’interface introduites.
+- [x] Vérifier la compilation, les tests, les erreurs de console et les rendus desktop et mobile avant livraison.
+- [x] Corriger le débordement horizontal des actions d’incident observé sur le format mobile.
+- [x] Stabiliser les dimensions minimales des graphiques afin d’éliminer les avertissements de rendu responsive dans la console.
+- [x] Ne pas créer de modules de vulnérabilités ou de règles : ces fonctionnalités ne sont pas disponibles dans le projet existant et n’ont donc pas été inventées.
+- [x] Créer des composants réutilisables explicites pour les états vides, chargement, erreur et les cartes d’insight IA, puis les utiliser sur les parcours SOC concernés.
+- [x] Apporter des améliorations vérifiables aux pages Actifs, Rapports et Administration au-delà du shell global, sans changer leurs requêtes ni leurs actions.
