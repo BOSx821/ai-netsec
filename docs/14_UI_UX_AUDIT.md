@@ -33,3 +33,7 @@ Les vues desktop de détection, d’inventaire, d’incident, d’analyse, de ra
 Les graphiques sont désormais montés seulement après la mesure effective de leur conteneur. Cette précaution conserve la stabilité du rendu lors de l’initialisation, des changements de largeur et des contrôles visuels automatisés, sans altérer les séries, les échelles ou les requêtes existantes.
 
 Les composants de feedback, d’insight et de carte d’alerte ont été intégrés aux écrans disponibles. Les écrans Actifs, Alertes, Rapports et Administration disposent maintenant de hiérarchies et de retours d’état explicites au-delà du shell global. Les vérifications desktop et mobile confirment que les cartes, indicateurs et actions se réorganisent sans débordement ; les actions de qualification des alertes restent accessibles en format compact sur mobile.
+
+## Variante compacte orientée données
+
+La variante demandée adopte une composition plus dense inspirée de la référence : navigation latérale réduite, barre utilitaire avec recherche de section, tuiles de métriques compactes et panneaux analytiques alignés en grille. Les données, termes et priorités du SOC restent spécifiques à AI-NETSEC. Les vérifications desktop et mobile confirment que la barre d’outils, les actions d’alerte et la hiérarchie du dashboard restent exploitables sans introduire de défilement horizontal.

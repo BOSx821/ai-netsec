@@ -16,3 +16,6 @@
 - [x] Ne pas créer de modules de vulnérabilités ou de règles : ces fonctionnalités ne sont pas disponibles dans le projet existant et n’ont donc pas été inventées.
 - [x] Créer des composants réutilisables explicites pour les états vides, chargement, erreur et les cartes d’insight IA, puis les utiliser sur les parcours SOC concernés.
 - [x] Apporter des améliorations vérifiables aux pages Actifs, Rapports et Administration au-delà du shell global, sans changer leurs requêtes ni leurs actions.
+- [x] Adapter le shell vers une composition compacte inspirée de la référence : barre latérale plus dense, top bar utilitaire, recherche et actions contextuelles.
+- [x] Recomposer le dashboard en grille analytique dense avec tuiles métriques, graphique principal, flux d’alertes et blocs secondaires compatibles avec les données SOC existantes.
+- [x] Vérifier les rendus desktop et mobile de la variante inspirée de la référence, puis valider compilation et tests avant publication.

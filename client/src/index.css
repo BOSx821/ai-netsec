@@ -291,3 +291,75 @@
   .report-print-source .report-footer { position: fixed; bottom: -10mm; left: 0; width: 100%; padding-top: 2mm; font-size: 7pt; }
   .print-page-break { break-before: page; page-break-before: always; }
 }
+
+/* Compact analytical dashboard variant, aligned with the supplied reference while preserving SOC semantics. */
+.soc-sidebar-compact { background: #172238 !important; }
+.soc-sidebar-header-compact { height: 56px; border-bottom-color: rgba(78, 96, 125, 0.28); }
+.soc-sidebar-content-compact { padding: 0.7rem 0.25rem; }
+.soc-sidebar-footer-compact { border-top-color: rgba(78, 96, 125, 0.28); padding: 0.6rem; }
+.soc-brand-compact { display: flex; min-width: 0; align-items: baseline; gap: 0.38rem; overflow: hidden; white-space: nowrap; }
+.soc-brand-compact > span { color: #f2f6fb; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.02em; }
+.soc-brand-compact small { color: #63dbe9; font-size: 0.56rem; font-weight: 800; letter-spacing: 0.12em; }
+.soc-sidebar-compact .soc-icon-button { height: 1.9rem; width: 1.9rem; border-color: transparent; background: transparent; }
+.soc-sidebar-compact .soc-icon-button:hover { border-color: rgba(130, 149, 181, 0.28); background: rgba(255, 255, 255, 0.05); }
+.soc-sidebar-compact .soc-nav-group + .soc-nav-group { margin-top: 0.6rem; }
+.soc-sidebar-compact .soc-nav-group-label { padding: 0 0.7rem 0.3rem; color: #7f8ca5; font-size: 0.55rem; letter-spacing: 0.12em; }
+.soc-sidebar-compact .soc-nav-item { height: 2rem; border-radius: 0.22rem; font-size: 0.71rem; }
+.soc-sidebar-compact .soc-nav-item[data-active="true"] { border-left: 2px solid #65e8f2; border-radius: 0.22rem; background: rgba(92, 89, 224, 0.24); box-shadow: none; }
+.soc-sidebar-compact .soc-profile-trigger { border-radius: 0.25rem; padding: 0.25rem; }
+.soc-sidebar-compact .soc-profile-trigger p { font-size: 0.68rem; }
+.soc-sidebar-compact .soc-profile-trigger span { font-size: 0.58rem; }
+.soc-app-inset-compact { background: #111a2b; }
+.soc-topbar-compact { height: 56px; border-bottom-color: rgba(78, 96, 125, 0.28); background: #111a2b; padding: 0 1rem; }
+.soc-mobile-context { display: none; }
+.soc-global-search { display: flex; width: min(100%, 245px); align-items: center; gap: 0.45rem; border-radius: 0.2rem; background: #1a263a; padding: 0.42rem 0.6rem; color: #8fa3be; }
+.soc-global-search input { min-width: 0; flex: 1; border: 0; outline: none; background: transparent; color: #dbe7f4; font-size: 0.68rem; }
+.soc-global-search input::placeholder { color: #768aa7; }
+.soc-global-search button { color: #9bb0c9; }
+.soc-topbar-actions { display: flex; align-items: center; gap: 0.35rem; }
+.soc-topbar-action { display: grid; height: 1.9rem; width: 1.9rem; place-items: center; border-radius: 0.2rem; color: #ced9e6; transition: background-color 140ms ease-out, color 140ms ease-out; }
+.soc-topbar-action:hover { background: rgba(255, 255, 255, 0.06); color: #6deaf3; }
+.soc-topbar-compact .soc-live-status { border-color: rgba(52, 211, 153, 0.16); background: transparent; padding: 0.32rem 0.48rem; color: #98d6bd; font-size: 0.58rem; }
+.soc-main-compact { min-height: calc(100vh - 56px); padding: 1rem; }
+.soc-reference-dashboard .soc-page-header { gap: 0.6rem; padding-bottom: 0.75rem; }
+.soc-reference-dashboard .soc-page-header h1 { font-size: clamp(1.35rem, 1.55vw, 1.7rem); }
+.soc-reference-dashboard .soc-page-description { margin-top: 0.28rem; color: #77b9bb; font-size: 0.72rem; }
+.soc-reference-dashboard .soc-panel { border-color: rgba(60, 78, 108, 0.48); border-radius: 0.25rem; background: #1a263a; box-shadow: none; }
+.soc-reference-dashboard .soc-kpi-card { min-height: 6.8rem; padding: 0.85rem 0.95rem; }
+.soc-reference-dashboard .soc-kpi-card p:first-child { font-size: 0.6rem; }
+.soc-reference-dashboard .soc-kpi-card p:nth-child(2) { margin-top: 0.5rem; font-size: 1.25rem; }
+.soc-reference-dashboard .soc-kpi-card p:last-child { margin-top: 0.25rem; font-size: 0.62rem; }
+.soc-reference-dashboard .soc-kpi-card > div > div:last-child { height: 2.25rem; width: 2.25rem; border-radius: 50%; background: #1d2c43; }
+.soc-reference-dashboard .soc-card-header { padding: 0.85rem 0.95rem 0; }
+.soc-reference-dashboard .soc-card-header h2, .soc-reference-dashboard .soc-ai-brief h2 { font-size: 0.76rem; }
+.soc-reference-dashboard .soc-card-header p:last-child { font-size: 0.6rem; }
+.soc-reference-dashboard .soc-card-kicker { font-size: 0.52rem; }
+.soc-reference-dashboard .soc-chart-card, .soc-reference-dashboard .soc-priority-card { padding-bottom: 0.8rem; }
+.soc-reference-dashboard .soc-priority-row { border-color: rgba(72, 90, 119, 0.48); border-radius: 0.2rem; background: #162237; padding: 0.55rem; }
+.soc-reference-dashboard .soc-priority-row-icon { height: 1.8rem; width: 1.8rem; border-radius: 0.2rem; }
+.soc-reference-dashboard .soc-priority-row strong { font-size: 0.7rem; }
+.soc-reference-dashboard .soc-priority-row small { font-size: 0.57rem; }
+.soc-reference-dashboard .soc-ai-brief { padding: 0.95rem; border-radius: 0.25rem; }
+.soc-reference-dashboard .soc-ai-brief-icon { height: 2.05rem; width: 2.05rem; border-radius: 0.25rem; }
+.soc-reference-dashboard .soc-ai-brief > p:last-of-type { font-size: 0.7rem; }
+.soc-reference-dashboard .soc-table td { padding: 0.65rem 0.95rem; }
+.soc-reference-dashboard .soc-table td p:first-child { font-size: 0.7rem; }
+.soc-reference-dashboard .soc-table td p:last-child { font-size: 0.58rem; }
+.soc-threat-brief-compact { min-height: 3.9rem; border-radius: 0.25rem; background: #19263a; padding: 0.6rem 0.75rem; }
+.soc-threat-brief-compact .soc-threat-icon { height: 2.2rem; width: 2.2rem; border-radius: 0.22rem; }
+.soc-threat-brief-compact h2 { font-size: 0.8rem; }
+.soc-threat-brief-compact .soc-count-chip { padding: 0.36rem 0.5rem; font-size: 0.6rem; }
+.soc-threat-brief-compact button { border-radius: 0.2rem; font-size: 0.65rem; }
+
+@media (max-width: 767px) {
+  .soc-topbar-compact { padding: 0 0.65rem; }
+  .soc-mobile-context { display: block; }
+  .soc-global-search { display: none; }
+  .soc-topbar-actions { gap: 0.12rem; }
+  .soc-topbar-action { height: 1.8rem; width: 1.8rem; }
+  .soc-topbar-compact .soc-live-status { display: none; }
+  .soc-main-compact { padding: 0.9rem; }
+  .soc-threat-brief-compact { align-items: center; }
+  .soc-threat-brief-compact > div:last-child { width: auto; }
+  .soc-reference-dashboard .soc-kpi-card { min-height: 6.2rem; }
+}
