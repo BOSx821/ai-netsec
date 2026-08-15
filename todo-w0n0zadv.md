@@ -28,3 +28,21 @@
 - [x] Refaire la QA de fidélité de la top bar complétée sur desktop et mobile, puis réexécuter les tests et la vérification TypeScript.
 - [x] Documenter et libeller explicitement la redirection de l’icône paramètres vers l’administration existante, aucun module de paramètres autonome n’étant disponible dans le projet.
 - [x] Revalider brièvement la top bar clarifiée sur desktop et mobile, puis relancer compilation et tests.
+- [x] Vérifier l’accès GitHub et la compatibilité du dépôt https://github.com/BOSx821/ai-netsec.git avec l’export de la version actuelle.
+- [x] Envoyer la version validée du projet vers le dépôt GitHub fourni et confirmer le commit distant.
+- [ ] Évaluer la publication de la plateforme sur un domaine étudiant sans rompre les services Node, tRPC, base de données et authentification existants.
+- [ ] Associer le domaine étudiant fourni par l’utilisateur à l’hébergement compatible et vérifier la publication publique.
+- [ ] Vérifier les enregistrements DNS actuels de ai-netsec.tn et préparer l’association à AI Security Platform.
+- [ ] Associer ai-netsec.tn à la plateforme, confirmer HTTPS et vérifier l’accès public au domaine personnalisé.
+- [ ] Évaluer une adresse gratuite contenant ai-netsec-bz, compatible avec les services serveur de la plateforme.
+- [ ] Configurer ou demander la configuration du sous-domaine public ai-netsec-bz compatible, puis vérifier son accès HTTPS.
+- [ ] Vérifier l’état DNS de ai-netsec.dev et préparer l’association à l’hébergement full-stack de la plateforme.
+- [ ] Associer ai-netsec.dev, appliquer les enregistrements DNS requis et confirmer l’accès HTTPS public.
+- [ ] Vérifier l’état DNS de ai-netsec.com et préparer son association à l’hébergement full-stack de la plateforme.
+- [ ] Associer ai-netsec.com, appliquer les enregistrements DNS requis et confirmer l’accès HTTPS public.
+- [ ] Choisir puis réclamer un domaine étudiant gratuit disponible, en privilégiant ai-netsec.dev puis ai-netsec.tech si nécessaire.
+- [ ] Associer le domaine étudiant effectivement enregistré à l’hébergement de la plateforme et vérifier HTTPS.
+- [ ] Utiliser le navigateur utilisateur pour réclamer ai-netsec.dev, en déléguant toute autorisation ou information de paiement au propriétaire du compte.
+- [ ] Choisir une adresse de publication gratuite sans carte bancaire, compatible avec les services full-stack de la plateforme.
+- [ ] Configurer l’adresse gratuite retenue et vérifier son accès HTTPS public.
+- [x] Rédiger un README professionnel décrivant les fonctionnalités réelles, l’architecture, l’installation, les tests et le déploiement de AI Security Platform.
