@@ -50,3 +50,5 @@
 - [x] Analyser les exigences de sécurité du contenu complémentaire fourni et les comparer aux contrôles AI-NETSEC.
 - [ ] Vérifier la connexion GitHub, confirmer le dépôt cible et exporter AI-NETSEC de manière contrôlée.
 - [x] Copier une version locale vérifiée d’AI-NETSEC dans C:\\Users\\utilisateur\\Desktop\\AI-security.
+- [x] Évaluer, adapter et valider la compétence engineering-ai-engineer pour la bibliothèque locale.
+- [x] Évaluer, adapter et valider une compétence professionnelle de conception UI/UX pour la bibliothèque locale.
