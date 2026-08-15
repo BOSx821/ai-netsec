@@ -37,3 +37,15 @@ Les composants de feedback, d’insight et de carte d’alerte ont été intégr
 ## Variante compacte orientée données
 
 La variante demandée adopte une composition plus dense inspirée de la référence : navigation latérale réduite, barre utilitaire avec recherche de section, tuiles de métriques compactes et panneaux analytiques alignés en grille. Les données, termes et priorités du SOC restent spécifiques à AI-NETSEC. Les vérifications desktop et mobile confirment que la barre d’outils, les actions d’alerte et la hiérarchie du dashboard restent exploitables sans introduire de défilement horizontal.
+
+## Reproduction structurée de la référence
+
+Le dashboard reprend maintenant la composition cible : barre latérale avec profil et navigation catégorisée, top bar compacte, en-tête avec action de rapport, quatre KPI avec indicateurs circulaires, grande carte de tendance accompagnée d’un flux d’événements et trois cartes d’analyse inférieures. Les visualisations reposent exclusivement sur les métriques, tendances, alertes et catégories déjà disponibles. La carte géographique de la référence a été remplacée par la couverture des systèmes, car le projet ne fournit pas de données de géolocalisation exploitables.
+
+La vérification sur mobile confirme l’adaptation prévue : top bar compacte, navigation repliée, KPI en colonne, graphique lisible et cartes d’alerte sans débordement horizontal. La recherche reste disponible sur desktop afin de préserver la densité mobile, tandis que les chemins de navigation, d’alerte, d’assistant et de rapport restent accessibles par leurs contrôles dédiés.
+
+La top bar reprend désormais l’ensemble utile de la référence : contrôle de thème relié au contexte existant, notifications, accès à l’administration et profil avec menu fonctionnel. Les contrôles conservent leurs libellés accessibles et restent compacts en mobile, sans retirer les accès principaux à la navigation ou aux alertes.
+
+L’icône de réglages est intentionnellement libellée comme un accès à l’administration : le projet ne comporte pas de route ou de module de paramètres autonome. Elle dirige donc vers le journal et les contrôles d’administration existants, sans prétendre créer une fonctionnalité de paramètres inexistante.
+
+La QA finale desktop et mobile confirme que les utilitaires de top bar restent visibles et atteignables, tandis que le menu mobile conserve un espace suffisant pour la navigation et le dashboard garde ses KPI, son graphique principal et ses indicateurs de priorité lisibles.

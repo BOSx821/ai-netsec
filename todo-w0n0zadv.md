@@ -19,3 +19,12 @@
 - [x] Adapter le shell vers une composition compacte inspirée de la référence : barre latérale plus dense, top bar utilitaire, recherche et actions contextuelles.
 - [x] Recomposer le dashboard en grille analytique dense avec tuiles métriques, graphique principal, flux d’alertes et blocs secondaires compatibles avec les données SOC existantes.
 - [x] Vérifier les rendus desktop et mobile de la variante inspirée de la référence, puis valider compilation et tests avant publication.
+- [x] Ajuster les proportions du shell pour reproduire précisément la barre latérale, le profil, la top bar et les zones d’action visibles dans la référence.
+- [x] Réorganiser le dashboard selon la structure stricte de référence : en-tête avec action rapport, quatre KPI à jauge circulaire, graphique principal et panneau d’événements récent.
+- [x] Créer les trois panneaux analytiques inférieurs avec des visualisations adaptées exclusivement aux données SOC disponibles.
+- [x] Vérifier la fidélité de densité, d’espacement, de hiérarchie et du responsive par rapport à la référence, puis valider tests et compilation.
+- [x] Réduire la hauteur du bloc d’information de démonstration, des KPI et de l’analytique principale afin d’aligner la visibilité de la grille inférieure avec le viewport de référence.
+- [x] Ajouter les utilitaires de top bar manquants de la référence : bascule de thème, accès paramètres et accès profil cohérent, sans créer de fonctionnalité métier fictive.
+- [x] Refaire la QA de fidélité de la top bar complétée sur desktop et mobile, puis réexécuter les tests et la vérification TypeScript.
+- [x] Documenter et libeller explicitement la redirection de l’icône paramètres vers l’administration existante, aucun module de paramètres autonome n’étant disponible dans le projet.
+- [x] Revalider brièvement la top bar clarifiée sur desktop et mobile, puis relancer compilation et tests.
